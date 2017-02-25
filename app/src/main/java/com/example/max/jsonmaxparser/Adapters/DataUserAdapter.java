@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.max.jsonmaxparser.Holders.UserViewHolder;
 import com.example.max.jsonmaxparser.Objects.User;
 import com.example.max.jsonmaxparser.R;
 
@@ -26,7 +28,7 @@ public class DataUserAdapter extends BaseAdapter {
         this.context = context;
         this.userList = userList;
     }
-
+/*
     static class UserViewHolder {
 
         ImageView userImage;
@@ -51,7 +53,7 @@ public class DataUserAdapter extends BaseAdapter {
 
 
 
-    }
+    }*/
 
 
 
@@ -63,19 +65,27 @@ public class DataUserAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         UserViewHolder userViewHolder;
+        User user = userList.get(position);
 
         if (convertView == null){
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.user_from_json_item, viewGroup, false);
-            userViewHolder = new UserViewHolder();
-            userViewHolder.initView(convertView);
+            userViewHolder = new UserViewHolder(convertView);
+          //  userViewHolder.initView(convertView);
             convertView.setTag(userViewHolder);
         } else {
             userViewHolder = (UserViewHolder) convertView.getTag();
         }
 
-       // viewHolder.txtItem.setText(getItem(position));
+        if(user != null){
+            if(user.getImageUrl()!=null)
+                Glide.with(context).load(user.getImageUrl()).into(userViewHolder.userImage);
+            userViewHolder.userFirstName.setText(user.getFirstName());
+            userViewHolder.userLastName.setText(user.getLastName());
+            userViewHolder.userGender.setText(user.getGender());
+            userViewHolder.userEmail.setText(user.getEmail());
+        }
 
         return convertView;
     }

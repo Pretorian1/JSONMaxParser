@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.max.jsonmaxparser.Objects.User;
 import com.example.max.jsonmaxparser.R;
 
@@ -12,11 +13,11 @@ import com.example.max.jsonmaxparser.R;
  */
 
 public class UserViewHolder {
-    ImageView userImage;
-    TextView userFirstName;
-    TextView userLastName;
-    TextView userGender;
-    TextView userEmail;
+    public ImageView userImage;
+    public TextView userFirstName;
+    public TextView userLastName;
+    public TextView userGender;
+    public TextView userEmail;
 
     public UserViewHolder(View itemView){
         userImage = (ImageView) itemView.findViewById(R.id.user_from_json_item_image);
@@ -26,10 +27,4 @@ public class UserViewHolder {
         userEmail = (TextView) itemView.findViewById(R.id.user_from_json_email);
     }
 
-
-    void setUserInformation(User user){
-        if(user!=null){
-
-        }
-    }
 }

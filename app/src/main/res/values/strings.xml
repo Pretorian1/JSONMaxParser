@@ -3,4 +3,6 @@
     <string name="main_url">https://s3.amazonaws.com/sherik/data.json</string>
     <string name="id">id</string>
     <string name="first_name">first_name</string>
+    <string name="server_error">Server Error</string>
+    <string name="error">Error</string>
 </resources>
