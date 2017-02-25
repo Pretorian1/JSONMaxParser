@@ -2,10 +2,13 @@ package com.example.max.jsonmaxparser.Activities;
 
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.max.jsonmaxparser.Adapters.DataUserAdapter;
@@ -39,13 +42,18 @@ public class MainActivity extends AppCompatActivity {
     public ParserTask parserTask;
     public ListView listView;
     public DataUserAdapter dataUserAdapter;
+    public FloatingActionButton floatingActionButton;
+    public ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.list_of_users);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.go_to_google_maps);
+        progressBar = (ProgressBar) findViewById(R.id.main_activity_load_bar);
         parserTask = new ParserTask();
+
     }
 
     @Subscribe
@@ -54,12 +62,15 @@ public class MainActivity extends AppCompatActivity {
             case RESPONSE_FROM_JSON_PARSER:
                 dataUserAdapter = new DataUserAdapter(this,(ArrayList<User>) event.link);
                 listView.setAdapter(dataUserAdapter);
+                progressBar.setVisibility(View.GONE);
                 break;
             case SERVER_ERROR:
                 Toast.makeText(this,"Server Error",Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
                 break;
             case ERROR:
                 Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
                 break;
         }
     }
@@ -67,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-       // new ParseTask().execute();
+        progressBar.setVisibility(View.VISIBLE);
         parserTask.execute();
     }
 
@@ -82,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
         super.onStop();
     }
+
 
 
 
