@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
-
-import com.example.max.jsonmaxparser.Activities.MainActivity;
 import com.example.max.jsonmaxparser.Objects.User;
 import com.example.max.jsonmaxparser.Utils.Constants;
 
@@ -29,22 +27,24 @@ public class UserDBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_USERS_COORDINATES);
         String CREATE_USER_COORDINATES_TABLE = "CREATE TABLE " + Constants.TABLE_USERS_COORDINATES + "("
-        + Constants.ID + " INTEGER PRIMARY KEY," + Constants.LAT + " REAL,"
+        + Constants.ID + " INTEGER," + Constants.LAT + " REAL,"
         + Constants.LNG + " REAL" + ")";
         db.execSQL(CREATE_USER_COORDINATES_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_USERS_COORDINATES);
+       // db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_USERS_COORDINATES);
         onCreate(db);
     }
 
     public void addUsersCoordinates(List<User> userList){
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
+        ContentValues values;
         for(User user:userList){
+            values = new ContentValues();
             values.put(Constants.ID, user.getId());
             values.put(Constants.LAT, user.getLat());
             values.put(Constants.LNG, user.getLng());

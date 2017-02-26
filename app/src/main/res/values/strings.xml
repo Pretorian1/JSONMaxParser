@@ -5,4 +5,6 @@
     <string name="first_name">first_name</string>
     <string name="server_error">Server Error</string>
     <string name="error">Error</string>
+    <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDWldOSOcnkA6BDHSzb1-lc_Nuw-AECegk</string>-->
+    <string name="title_activity_maps">Map</string>
 </resources>

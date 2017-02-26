@@ -1,5 +1,6 @@
 package com.example.max.jsonmaxparser.Activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -38,7 +39,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String LOG_TAG = "my_log";
     public ParserTask parserTask;
     public ListView listView;
     public DataUserAdapter dataUserAdapter;
@@ -55,7 +55,10 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
                 Toast.makeText(getBaseContext(),"Moving to Google Maps",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(intent);
             }
         });
         parserTask = new ParserTask(this);

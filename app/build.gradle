@@ -6,6 +6,7 @@ android {
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.max.jsonmaxparser"
+        multiDexEnabled true
         minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
@@ -25,10 +26,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:appcompat-v7:25.2.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.android.support:support-v4:25.2.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:design:25.2.0'
+    compile 'com.google.android.gms:play-services:10.0.0'
     testCompile 'junit:junit:4.12'
 }
