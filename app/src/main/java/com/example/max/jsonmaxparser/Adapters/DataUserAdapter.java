@@ -28,34 +28,6 @@ public class DataUserAdapter extends BaseAdapter {
         this.context = context;
         this.userList = userList;
     }
-/*
-    static class UserViewHolder {
-
-        ImageView userImage;
-        TextView userFirstName;
-        TextView userLastName;
-        TextView userGender;
-        TextView userEmail;
-
-        void initView(View itemView){
-            userImage = (ImageView) itemView.findViewById(R.id.user_from_json_item_image);
-            userFirstName = (TextView) itemView.findViewById(R.id.user_from_json_first_name);
-            userLastName = (TextView) itemView.findViewById(R.id.user_from_json_last_name);
-            userGender = (TextView) itemView.findViewById(R.id.user_from_json_gender);
-            userEmail = (TextView) itemView.findViewById(R.id.user_from_json_email);
-        }
-
-        void setUserInformation(User user){
-            if(user!=null){
-
-            }
-        }
-
-
-
-    }*/
-
-
 
     @Override
     public User getItem(int i) {
@@ -72,7 +44,6 @@ public class DataUserAdapter extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.user_from_json_item, viewGroup, false);
             userViewHolder = new UserViewHolder(convertView);
-          //  userViewHolder.initView(convertView);
             convertView.setTag(userViewHolder);
         } else {
             userViewHolder = (UserViewHolder) convertView.getTag();

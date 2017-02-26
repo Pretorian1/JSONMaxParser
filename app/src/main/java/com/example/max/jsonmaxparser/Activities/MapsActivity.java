@@ -3,8 +3,6 @@ package com.example.max.jsonmaxparser.Activities;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import com.example.max.jsonmaxparser.DBHadlers.UserDBHandler;
 import com.example.max.jsonmaxparser.Objects.User;
@@ -20,7 +18,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {

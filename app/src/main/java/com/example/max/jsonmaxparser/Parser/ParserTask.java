@@ -2,7 +2,6 @@ package com.example.max.jsonmaxparser.Parser;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.max.jsonmaxparser.DBHadlers.UserDBHandler;
 import com.example.max.jsonmaxparser.Objects.User;
@@ -86,11 +85,6 @@ public class ParserTask extends AsyncTask<Void, Void, String> {
                     user.setImageUrl(oneObject.getString(Constants.IMAGE_URL));
                     user.setLat(oneObject.getDouble(Constants.LAT));
                     user.setLng(oneObject.getDouble(Constants.LNG));
-                    /*Integer id = oneObject.getInt(Constants.ID);
-                    String oneObjectsItem = oneObject.getString(Constants.FIRST_NAME);
-                    String oneObjectsItem2 = oneObject.getString(Constants.LAST_NAME);
-                    String oneObjectsItem3 = oneObject.getString(Constants.IMAGE_URL);
-                    Log.i("",id+" "+ oneObjectsItem+ " " +oneObjectsItem2 + " " +oneObjectsItem3);*/
                     userList.add(user);
                 } catch (JSONException e) {
                     EventBus.getDefault().post(new MessageEvent(Messages.ERROR,null));
