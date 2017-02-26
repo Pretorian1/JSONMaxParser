@@ -52,7 +52,13 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list_of_users);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.go_to_google_maps);
         progressBar = (ProgressBar) findViewById(R.id.main_activity_load_bar);
-        parserTask = new ParserTask();
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getBaseContext(),"Moving to Google Maps",Toast.LENGTH_SHORT).show();
+            }
+        });
+        parserTask = new ParserTask(this);
 
     }
 
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 dataUserAdapter = new DataUserAdapter(this,(ArrayList<User>) event.link);
                 listView.setAdapter(dataUserAdapter);
                 progressBar.setVisibility(View.GONE);
+                floatingActionButton.setVisibility(View.VISIBLE);
                 break;
             case SERVER_ERROR:
                 Toast.makeText(this,"Server Error",Toast.LENGTH_SHORT).show();

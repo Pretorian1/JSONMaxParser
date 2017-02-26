@@ -7,6 +7,7 @@ package com.example.max.jsonmaxparser.Utils;
 public enum Messages {
     RESPONSE_FROM_JSON_PARSER,
     SERVER_ERROR,
+    DATA_BASE_ERROR,
     ERROR
 
 }

@@ -1,8 +1,10 @@
 package com.example.max.jsonmaxparser.Parser;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.max.jsonmaxparser.DBHadlers.UserDBHandler;
 import com.example.max.jsonmaxparser.Objects.User;
 import com.example.max.jsonmaxparser.Utils.Constants;
 import com.example.max.jsonmaxparser.Utils.MessageEvent;
@@ -26,15 +28,18 @@ import java.util.List;
  */
 
 public class ParserTask extends AsyncTask<Void, Void, String> {
+    Context context;
     HttpURLConnection urlConnection = null;
     BufferedReader reader = null;
     String resultJson = "";
     List<User> userList;
     User user;
 
+    public ParserTask(Context context){
+        this.context = context;
+    }
     @Override
     protected String doInBackground(Void... params) {
-        // получаем данные с внешнего ресурса
         try {
             URL url = new URL(Constants.URL);
 
@@ -62,17 +67,15 @@ public class ParserTask extends AsyncTask<Void, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {//strJson
+    protected void onPostExecute(String result) {
         super.onPostExecute(result);
         userList = new ArrayList<User>();
         try {
-            //  JSONObject jObject = new JSONObject(result);
             JSONArray jArray = new JSONArray(result);
             for (int i=0; i < jArray.length(); i++)
             {
                 try {
                     JSONObject oneObject = jArray.getJSONObject(i);
-                    // Pulling items from the array
                     user = new User();
                     user.setId(oneObject.getInt(Constants.ID));
                     user.setFirstName(oneObject.getString(Constants.FIRST_NAME));
@@ -93,6 +96,8 @@ public class ParserTask extends AsyncTask<Void, Void, String> {
                     EventBus.getDefault().post(new MessageEvent(Messages.ERROR,null));
                 }
             }
+            UserDBHandler db = new UserDBHandler(context);
+            db.addUsersCoordinates(userList);
             EventBus.getDefault().post(new MessageEvent(Messages.RESPONSE_FROM_JSON_PARSER,userList));
 
         } catch (JSONException e) {

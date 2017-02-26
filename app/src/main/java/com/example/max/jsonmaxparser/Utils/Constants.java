@@ -15,4 +15,8 @@ public class Constants {
     public static final String IMAGE_URL = "image";
     public static final String LAT = "lat";
     public static final String LNG = "lng";
+    public static final String DATA_BASE_NAME = "users_info";
+    public static final String TABLE_USERS_COORDINATES = "users_coordinates";
+    public static final int DATA_BASE_VERSION = 1;
+
 }
